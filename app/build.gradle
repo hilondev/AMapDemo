@@ -1,0 +1,46 @@
+apply plugin: 'com.android.application'
+
+def ANDROID =rootProject.ext.android
+def DEPENDENCIES = rootProject.ext.dependencies
+
+android {
+    compileSdkVersion ANDROID.compileSdkVersion
+    buildToolsVersion ANDROID.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.bearapp.amapdemo"
+        minSdkVersion ANDROID.minSdkVersion
+        targetSdkVersion ANDROID.targetSdkVersion
+        versionCode ANDROID.versionCode
+        versionName ANDROID.versionName
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("mykeystore.jks")
+            storePassword "android"
+            keyAlias "android"
+            keyPassword "android"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile DEPENDENCIES.appcompat_v7
+    compile project(':amaplib')
+}

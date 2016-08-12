@@ -1,0 +1,17 @@
+ext {
+    android = [
+            compileSdkVersion: 24,
+            buildToolsVersion: "24.0.1",
+            minSdkVersion    : 15,
+            targetSdkVersion : 24,
+            versionCode      : 1,
+            versionName      : "1.0"
+
+    ]
+
+    supportVersion = "24.1.1"
+
+    dependencies = [
+            appcompat_v7: "com.android.support:appcompat-v7:${supportVersion}"
+    ]
+}
